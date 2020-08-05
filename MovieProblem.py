@@ -49,16 +49,16 @@ def readinfile() :
 
 def determineShowtimes():
 	for each_key in movies: 
-		movie_Length = movies[each_key].run_time 
-		[movie_runtime_hours, movie_runtime_minutes] = [int(x) for x in movie_Length.split(':')] 	
-		movie_runTime = timedelta(hours = movie_runtime_hours, minutes = movie_runtime_minutes) 	
+		movie_length = movies[each_key].run_time 
+		[movie_runtime_hours, movie_runtime_minutes] = [int(x) for x in movie_length.split(':')] 	
+		movie_runtime = timedelta(hours = movie_runtime_hours, minutes = movie_runtime_minutes) 	
 		unadjusted_end_time = closing_time 																
-		while unadjusted_end_time- movie_runTime > earliest_move_start_time: 
-			unadjusted_start_time = unadjusted_end_time - movie_runTime  
+		while unadjusted_end_time- movie_runtime > earliest_move_start_time: 
+			unadjusted_start_time = unadjusted_end_time - movie_runtime  
 			offset = (unadjusted_start_time.minute) % 5 
 			offsetTime = timedelta(minutes = offset) 
 			start_time = unadjusted_start_time - offsetTime 
-			end_time = start_time + movie_runTime 
+			end_time = start_time + movie_runtime 
 			if (start_time >= earliest_move_start_time): 
 				print_start = start_time.strftime('%H:%M') 
 				print_end = end_time.strftime('%H:%M') 
